@@ -185,6 +185,22 @@
 
     /* Accesibilidad estricta: indicador de foco visible */
     *:focus-visible { outline: 3px solid var(--vibrant-blue); outline-offset: 2px; }
+
+    /* ==========================================================================
+       RESPONSIVE: MÓVIL (≤640px)
+       El hero con min-height:95vh + logo + h1 + párrafo + CTA + vídeo suma más
+       que el viewport en pantallas pequeñas y corta el vídeo. Se relaja la
+       altura mínima y se reducen márgenes para que todo el contenido quepa.
+       ========================================================================== */
+    @media (max-width: 640px) {
+      section { padding: 64px 20px; }
+      .hero { min-height: auto; padding-top: 56px; padding-bottom: 56px; }
+      .hero__logo { margin-bottom: 28px; }
+      .hero__logo svg { height: 34px; }
+      .media-wrapper { margin: 28px 0; }
+      p.c-big-text { margin-bottom: 28px; }
+      .c-micro { margin-top: 16px; }
+    }
   </style>
 </head>
 <body>
