@@ -59,13 +59,17 @@
       line-height: 1.6;
     }
 
-    section { padding: 100px 24px; position: relative; }
-    
+    section { padding: clamp(56px, 9vh, 96px) 24px; position: relative; }
+
+    /* Secciones a pantalla completa (desktop): cada bloque llena el viewport */
+    .s-full { min-height: 100vh; min-height: 100svh; display: flex; align-items: center; justify-content: center; }
+    .s-full .l-wrap { width: 100%; }
+
     .l-wrap { max-width: 900px; margin: 0 auto; text-align: center; }
-    
+
     /* Jerarquía Tipográfica */
     h1, h2, h3 { font-family: var(--font-title); font-weight: 800; }
-    h1 { font-size: clamp(2.4rem, 7vw, 4.2rem); line-height: 1.1; margin-bottom: 24px; color: var(--navy-text); }
+    h1 { font-size: clamp(1.7rem, min(7vw, 5.2vh), 3.6rem); line-height: 1.1; margin-bottom: clamp(10px, 2vh, 20px); color: var(--navy-text); }
     h2 { font-size: clamp(1.8rem, 5vw, 2.8rem); line-height: 1.2; margin-bottom: 24px; }
     
     /* Efecto Aura Mágica de Luz / Gradientes */
@@ -88,7 +92,7 @@
       border-radius: 4px;
     }
 
-    p.c-big-text { font-size: clamp(1.1rem, 3vw, 1.35rem); color: var(--muted-text); max-width: 720px; margin: 0 auto 40px; }
+    p.c-big-text { font-size: clamp(1rem, min(3vw, 2.3vh), 1.3rem); color: var(--muted-text); max-width: 720px; margin: 0 auto clamp(18px, 3vh, 36px); }
 
     /* Componente: Botón de Acción Principal (Optimizado Táctil WCAG) */
     .c-btn {
@@ -112,27 +116,47 @@
        SMACSS: CATEGORÍA LAYOUT & MÓDULOS (BEM PLANO)
        ========================================================================== */
     
-    /* 1 · HERO */
+    /* 1 · HERO — ocupa exactamente 1 pantalla; el vídeo llena el espacio restante */
     .hero {
-      min-height: 95vh;
+      height: 100vh;
+      height: 100svh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       background: radial-gradient(circle at 10% 20%, rgba(240, 247, 255, 1) 0%, rgba(255, 255, 255, 1) 90%);
-      padding-top: 40px;
+      padding: clamp(16px, 3vh, 32px) 24px;
     }
-    .hero__logo { margin-bottom: 48px; display: flex; justify-content: center; }
-    .hero__logo svg { height: 42px; width: auto; display: block; }
+    .hero .l-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+    }
+    .hero__logo { margin-bottom: clamp(14px, 3vh, 36px); display: flex; justify-content: center; }
+    .hero__logo svg { height: clamp(48px, 7vh, 70px); width: auto; display: block; }
+
+    /* El vídeo del hero es flexible: crece/encoge para llenar la pantalla sin cortarse */
+    .hero .media-wrapper {
+      flex: 1 1 0;
+      min-height: 150px;
+      aspect-ratio: auto;
+      max-height: none;
+      margin: clamp(14px, 3vh, 32px) 0 0;
+    }
+    .hero .c-micro { margin-top: clamp(8px, 1.5vh, 16px); }
 
     /* Contenedores multimedia portables y fluidos */
     .media-wrapper {
       width: 100%;
-      margin: 40px 0;
+      margin: clamp(20px, 4vh, 40px) auto 0;
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
       aspect-ratio: 16 / 9; /* Previene Layout Shift CLS */
+      max-height: min(48vh, 480px); /* nunca más alto que media pantalla: no se corta */
       background-color: var(--sky-blue);
     }
     .media-wrapper img, .media-wrapper video { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -144,13 +168,13 @@
     .steps-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 32px;
+      gap: clamp(16px, 3vh, 32px);
       text-align: left;
-      margin-top: 56px;
+      margin-top: clamp(24px, 4vh, 48px);
     }
     .step-card {
       background: var(--white);
-      padding: 32px;
+      padding: clamp(20px, 3vh, 32px);
       border-radius: 12px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.02);
       border-top: 4px solid var(--vibrant-blue);
@@ -164,7 +188,10 @@
     .step-card__title { font-size: 1.3rem; margin: 12px 0 8px; color: var(--navy-text); }
     .step-card__text { color: var(--muted-text); font-size: 0.95rem; }
     
-    .tease-link { display: inline-block; margin-top: 48px; color: var(--vibrant-blue); text-decoration: none; font-weight: 700; font-size: 1.05rem; border-bottom: 2px solid var(--vibrant-blue); padding-bottom: 4px; }
+    /* En "What we're building" hay más contenido (3 tarjetas + vídeo): vídeo más contenido */
+    #features .media-wrapper { max-height: min(36vh, 400px); }
+
+    .tease-link { display: inline-block; margin-top: clamp(24px, 4vh, 48px); color: var(--vibrant-blue); text-decoration: none; font-weight: 700; font-size: 1.05rem; border-bottom: 2px solid var(--vibrant-blue); padding-bottom: 4px; }
     .tease-link:hover { color: var(--vibrant-red); border-bottom-color: var(--vibrant-red); }
 
     /* 4 · CREDIBILITY */
@@ -201,30 +228,26 @@
 
     /* ==========================================================================
        RESPONSIVE: MÓVIL (≤640px)
-       El hero con min-height:95vh + logo + h1 + párrafo + CTA + vídeo suma más
-       que el viewport en pantallas pequeñas y corta el vídeo. Se relaja la
-       altura mínima y se reducen márgenes para que todo el contenido quepa.
+       El hero mantiene el ajuste exacto a 1 pantalla (flex). Las demás secciones
+       fluyen de forma natural (no se fuerza pantalla completa: 3 tarjetas +
+       vídeo no caben en un móvil sin hacer el vídeo minúsculo).
        ========================================================================== */
     @media (max-width: 640px) {
-      section { padding: 64px 20px; }
-      .hero { min-height: auto; padding-top: 56px; padding-bottom: 56px; }
-      .hero__logo { margin-bottom: 28px; }
-      .hero__logo svg { height: 34px; }
-      .media-wrapper { margin: 28px 0; }
-      p.c-big-text { margin-bottom: 28px; }
-      .c-micro { margin-top: 16px; }
+      section { padding: 56px 20px; }
+      .s-full { min-height: auto; display: block; }
+      .hero { padding-left: 16px; padding-right: 16px; }
+      .hero__logo svg { height: clamp(40px, 6vh, 56px); }
+      .c-btn { padding: 14px 36px; font-size: 1rem; }
     }
 
     /* ==========================================================================
-       RESPONSIVE: PANTALLAS BAJAS (≤820px de alto)
-       En portátiles comunes (p.ej. 1366x768) el hero con min-height:95vh no cabe
-       y el "justify-content:center" empuja el logo y la primera línea del H1
-       fuera de la vista al cargar. Se relaja la altura mínima igual que en móvil.
+       RESPONSIVE: PANTALLAS MUY BAJAS (≤450px de alto, móvil apaisado)
+       Imposible encajar todo el hero: se permite scroll con vídeo 16:9 normal.
        ========================================================================== */
-    @media (max-height: 820px) {
-      .hero { min-height: auto; padding-top: 56px; padding-bottom: 56px; }
-      .hero__logo { margin-bottom: 28px; }
-      .media-wrapper { margin: 28px 0; }
+    @media (max-height: 450px) {
+      .hero { height: auto; min-height: 100svh; }
+      .hero .media-wrapper { flex: none; aspect-ratio: 16 / 9; }
+      .s-full { min-height: auto; display: block; }
     }
   </style>
 </head>
@@ -262,7 +285,7 @@
   </section>
 
   <!-- 2 · PROBLEM -->
-  <section class="problem" id="problem">
+  <section class="problem s-full" id="problem">
     <div class="l-wrap">
       <span class="c-eyebrow">THE PROBLEM</span>
       <h2>Everyone gets the same city.</h2>
@@ -276,7 +299,7 @@
   </section>
 
   <!-- 3 · TEASER -->
-  <section id="features">
+  <section id="features" class="s-full">
     <div class="l-wrap">
       <span class="c-eyebrow">WHAT WE'RE BUILDING</span>
       <h2>Two people land in Barcelona.<br>There should be <span class="u-text-gradient">two Barcelonas.</span></h2>
