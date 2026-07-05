@@ -201,6 +201,18 @@
       p.c-big-text { margin-bottom: 28px; }
       .c-micro { margin-top: 16px; }
     }
+
+    /* ==========================================================================
+       RESPONSIVE: PANTALLAS BAJAS (≤820px de alto)
+       En portátiles comunes (p.ej. 1366x768) el hero con min-height:95vh no cabe
+       y el "justify-content:center" empuja el logo y la primera línea del H1
+       fuera de la vista al cargar. Se relaja la altura mínima igual que en móvil.
+       ========================================================================== */
+    @media (max-height: 820px) {
+      .hero { min-height: auto; padding-top: 56px; padding-bottom: 56px; }
+      .hero__logo { margin-bottom: 28px; }
+      .media-wrapper { margin: 28px 0; }
+    }
   </style>
 </head>
 <body>
