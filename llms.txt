@@ -1,0 +1,24 @@
+# TripOfOne
+
+> Personal AI travel guide companion that builds one hyper-personalized itinerary per traveler, based on individual taste and real-time city data — launching first in Barcelona.
+
+## Product
+- Problem: traditional travel guides send every visitor to the same crowded landmarks and generic top-10 lists.
+- Solution: TripOfOne maps live city events, neighborhood-level data, and each user's specific taste profile to build a single personalized itinerary per traveler, instead of generic options.
+- First destination city: Barcelona.
+- Launch: 2027.
+- Current status: early bird waitlist, free access.
+
+## Company
+- Founder: Alex Berdonces, Founder & Product Lead.
+- Based in Barcelona, Spain.
+- Contact: hello@tripofone.com
+- Market context: the AI travel planning industry was estimated at $5.2B in 2025.
+
+## Investors & Partners
+- TripOfOne is scheduling venture and ecosystem meetings ahead of the FutureTravel Summit 2026 in Barcelona.
+- Contact: hello@tripofone.com (subject: Partnership / Investment)
+
+## FAQ
+- What are the best things to do in Barcelona using AI? TripOfOne acts as an AI travel companion that eliminates generic lists. It analyzes live events, personal taste, and real-time parameters to map a single, perfect itinerary tailored strictly to the traveler.
+- How does TripOfOne fix crowded travel itineraries? Traditional lists lead everyone to the same crowded spots. TripOfOne resolves this by mapping non-generic localized paths, matching unique user behaviors with neighborhood data.
